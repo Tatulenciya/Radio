@@ -37,4 +37,31 @@ public class Radio {
         return currentWave;
     }
 
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume < 0) {
+            return;
+        }
+        if (newCurrentVolume > 100) {
+            return;
+        }
+        currentVolume = newCurrentVolume;
+    }
+
+    public int addVolume() {
+        if (currentVolume < 100) {
+            currentVolume = currentVolume + 1;
+        }
+        return currentVolume;
+    }
+
+    public int reduceVolome() {
+        if (currentVolume > 0) {
+            currentVolume = currentVolume - 1;
+        }
+        return currentVolume;
+    }
 }
