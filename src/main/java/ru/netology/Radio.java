@@ -4,16 +4,30 @@ package ru.netology;
 public class Radio {
     private int currentWave;
     private int currentVolume;
+    private int firstWave = 0;
+    private int lastWave;
+
+
+    public Radio (int currentWave, int currentVolume, int size) {
+        this.currentWave = currentWave;
+        this.currentVolume = currentVolume;
+        this.lastWave = size - 1;
+    }
+
+    public Radio () {
+        lastWave = 9;
+    }
+
 
     public int getCurrentWave() {
         return currentWave;
     }
 
     public void setCurrentWave(int newCurrentWave) {
-        if (newCurrentWave < 0) {
+        if (newCurrentWave < firstWave) {
             return;
         }
-        if (newCurrentWave > 9) {
+        if (newCurrentWave > lastWave) {
             return;
         }
         currentWave = newCurrentWave;
@@ -21,8 +35,8 @@ public class Radio {
 
     public int next() {
         int target = currentWave + 1;
-        if (currentWave == 9) {
-            target = 0;
+        if (currentWave == lastWave) {
+            target = firstWave;
         }
         setCurrentWave(target);
         return currentWave;
@@ -30,8 +44,8 @@ public class Radio {
 
     public int prev() {
         int previous = currentWave - 1;
-        if (currentWave == 0) {
-            previous = 9;
+        if (currentWave == firstWave) {
+            previous = lastWave;
         }
         setCurrentWave(previous);
         return currentWave;
